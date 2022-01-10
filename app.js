@@ -1,16 +1,16 @@
-const express = require('express');
-var expressWs = require('express-ws');
-const path = require('path');
-const flash = require('connect-flash');
-var http = require('http')
-
+import express from 'express';
+import expressWs from 'express-ws';
+import path from'path';
+import flash from 'connect-flash';
+import http from'http'
+import usersrRoute from'./routes/users.js'
+import controlRoute from './routes/control.js'
 const app = express(); 
 const port = 3000; 
 const server = http.createServer(app).listen(port);
 var eWs = expressWs(app,server);
 
-const usersrRoute = require('./routes/users') 
-const controlRoute = require('./routes/control') 
+
 
 
 
