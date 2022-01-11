@@ -12,7 +12,7 @@ export const index = (req, res)=> {
 }
 export const get_signin = (req, res)=> {
     // var messages = req.flash('error')
-    res.render('users/signin',{
+    res.render('users/signin',{hasError :0
         // messages:messages
         //hasErrors: messages.legth>0,
     })
@@ -21,7 +21,7 @@ export const post_signin = async(req,res1)=> {
     let u = req.body.username;
     let p = req.body.password;
     if(u == ''||p == '')
-        res1.status(500).send({message: 'Missing some value'})
+        res1.status(500).render('users/signin',{hasError: 1,msg: 'Missing some value'})
     else{
         try{
             var user = await db.query('SELECT * FROM USERS WHERE username = $1 and password = $2 LIMIT 1',[u,p])
@@ -36,12 +36,12 @@ export const post_signin = async(req,res1)=> {
                 id: user.rows[0].id,
                 username : user.rows[0].username,
                 role : user.rows[0].role,
-               // token : token
+                token : token
 
             })
         }
         else {
-            res.status(500).send({message:'Wrong username or password'});
+            res1.status(500).render('users/signin',{hasError:1 ,msg:'Wrong username or password'});
         }
 
 
@@ -65,7 +65,7 @@ export const post_signup = function(req,res1) {
         {
             
             console.log("username da ton tai");
-            res1.render('users/signup',{hasError : 1,msg:'user name da ton tai'});   
+            res1.status(500).render('users/signup',{hasError : 1,msg:'user name da ton tai'});   
         }
         else {
 
