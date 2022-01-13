@@ -3,7 +3,7 @@ export default {
         user: 'postgres',
         host: 'localhost',
         database: 'smartLock',
-        password: '3101',
+        password: '5432',
         port: 5432,
     },
     JWT_SECRET: process.env.JWT_SECRET || 'somethingsecret',
