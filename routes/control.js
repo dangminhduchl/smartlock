@@ -1,6 +1,6 @@
-const express = require('express');
-const user_router = express.Router();
-const user_controller = require('../controllers/control')
+import express from 'express';
+import * as control_controller from '../controllers/control.js'
+const control_router = express.Router();
 
-user_router.get('/', user_controller.index)
-module.exports = user_router;
+control_router.get('/', control_controller.index)
+export default control_router;
