@@ -1,3 +1,4 @@
+// create config.js with this template
 export default {
     POSTGRES_INFO: {
         user: 'postgres',
