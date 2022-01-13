@@ -2,6 +2,7 @@ import express from 'express'
 import pg from 'pg'
 import config from '../config.js'
 import { getToken } from '../utils.js'
+import users from '../models/users.js'
 const router = express.Router()
 
 const Pool = pg.Pool
@@ -32,13 +33,15 @@ export const post_signin = async(req,res1)=> {
         {
             var token = getToken(user)
             res1.cookie('token',token,{expires: new Date(Date.now()+90000000)})
-            res1.send({
-                id: user.rows[0].id,
-                username : user.rows[0].username,
-                role : user.rows[0].role,
-                token : token
-
-            })
+            let authuser = new users(user.rows[0].id, user.rows[0].username,user.rows[0].password,user.rows[0].role,token)
+            console.log(user.rows[0])
+            console.log(authuser)
+            if(authuser.role > 0){
+                res1.render('homepages/home')
+            }
+            else{
+                res1.render('users/signin',{hasError:1,msg:'Admin chua cap quyen, hay lien he voi admin'})
+            }
         }
         else {
             res1.status(500).render('users/signin',{hasError:1 ,msg:'Wrong username or password'});
@@ -76,28 +79,32 @@ export const post_signup = function(req,res1) {
     });
 }
 
-export const search = function(req,res){
-    var name = req.query.name;
 
-    var result = users.filter((user)=>{
-        return user.name.toLowerCase().indexOf(name.toLowerCase()) !== -1
-    })
-    res.render('users/index',{users: result});
+
+export const showusers = async (req,res) => {
+    try{
+        var alluser = await db.query('SELECT * FROM USERS')
+        array.forEach(element => {
+            
+        });
+        console.log(alluser.rows)
+    } catch(err){
+        console.log(err)
+        }
+        res.render("users/user",{user:alluser.rows})
 }
-export const get_create = function(req,res){
-    res.render("users/create")
-}
-export const post_create = function(req,res){
-    users.push(req.body)
-    res.redirect('/users')  
-}
-export const get_id = function(req,res) {
-    var user = users.find((user)=>{
-        var nid = req.params.id
-            return user.id == parseInt(nid) 
-    })
-    console.log(req.params)
-    res.render("users/show",{user:user})
+export const post_showusers = async (req,res) => {
+
+    console.log(req.body)
+    let id = req.body.ID
+    let role = req.body.setrole
+    console.log(id,role)
+    try {
+        db.query('UPDATE USERS SET role = $1 WHERE id = $2',[role,id])
+    } catch(err){
+        console.log(err);
+    }
+    res.redirect('/users/allusers')
 }
 
 export default router;

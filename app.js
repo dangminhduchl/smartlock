@@ -5,11 +5,12 @@ import flash from 'connect-flash';
 import http from'http'
 import usersrRoute from'./routes/users.js'
 import controlRoute from './routes/control.js'
+
 const app = express(); 
 const port = 3000; 
 const server = http.createServer(app).listen(port);
 var eWs = expressWs(app,server);
-
+var CLIENT = []
 
 
 
@@ -39,8 +40,24 @@ app.use('/users',usersrRoute)
 app.use('/control',controlRoute)
 
 app.ws('/',async function(ws,req) {
+    ws.getUniqueID =()=> {
+        function s4() {
+            return Math.floor((1+Math.random())* 0x10000).toString(16).substring(1)
+            
+        }
+        return s4()+s4()+'-'+s4();
+        
+    }
+    ws.on('connection',(ws,req)=>{
+        ws.id =Ews.getUniqueID();
+        ews.client.forEach( (client)=>{
+            console.log('client ID: '+client.id)
+        })
+    })
     ws.on('message',function (msg) {
         var socket = eWs.getWss('/');
+       
+        
         let msgJson = JSON.parse(msg);
         console.log(msgJson)
         if (msgJson.dv=="S")
@@ -84,6 +101,7 @@ app.ws('/',async function(ws,req) {
            
         });
         console.log(state);
+        
     });
 
     // ws.getUniqueID = function () {
