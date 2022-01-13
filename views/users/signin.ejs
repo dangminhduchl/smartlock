@@ -1,6 +1,5 @@
 <body>
     <div class="center">
-    <span>nbmnb</span>
     <h3>SIGN IN</h3>
     <form action="/users/signin" method="POST">
         <div class="field">
@@ -11,7 +10,14 @@
         <div class="label" for="password">Password</div>
         <input type="password" name="password" placeholder="password" />
         </div>
+        <span></span>
         <button class="btn" type="submit">Sign In</button>
+        <%  if(hasError==1){ %> 
+            <span><%- msg%></span>
+        <% } %>
+        <br>
+
+        
         <p>
         Don't Have An Account? 
         <a href="/users/signup">Register an account</a>

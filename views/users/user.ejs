@@ -1,0 +1,30 @@
+<h2> Show user </h2>
+<table border="1">
+    <caption align="top">DANH SÁCH USER</caption>
+    <tr>
+        <th>ID</th>
+        <th>username</th>
+        <th>Password   </th>
+        <th>Role</th>
+    </tr>
+    <% user.forEach(u => { %> 
+    <tr>    
+        <td><%- u.id%></td>
+        <td><%- u.username%></td>
+        <td><%- u.password%></td>
+        <td><%- u.role%></td>
+    <% }) %>
+    </tr> 
+</table>
+<br>
+<form action="allusers" method="POST">
+    <select name="ID">
+        <% user.forEach(u => { %> 
+            <option value=<%- u.id%>><%- u.id %></option>
+        <% }) %>
+    </select>  &nbsp
+    <input type="radio" name="setrole" value=0 checked> 0
+    <input type="radio" name="setrole" value=1> 1
+    <input type="radio" name="setrole" value=2> 2 &nbsp
+    <button class="btn" type="submit">Set role</button>
+</form>    
