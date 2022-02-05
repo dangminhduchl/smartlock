@@ -96,11 +96,11 @@ export const showusers = async (req,res) => {
 export const post_showusers = async (req,res) => {
 
     console.log(req.body)
-    let id = req.body.ID
+    let username = req.body.username
     let role = req.body.setrole
-    console.log(id,role)
+    console.log(username,role)
     try {
-        db.query('UPDATE USERS SET role = $1 WHERE id = $2',[role,id])
+        await db.query('UPDATE USERS SET role = $1 WHERE username = $2',[role,username])
     } catch(err){
         console.log(err);
     }
@@ -113,13 +113,13 @@ export const deleteUser = async (req, res) => {
 }
 
 export const get_updateUser = async (req, res) => {
-    res.render('/users/editUsers')
+    res.render('users/editUsers')
 }
 
 export const post_updateUser = async (req, res) => {
-    const id = req.params.id
     const {username, password} = req.body
-    const update = await db.query("UPDATE USERS SET username = $1 and password = $2 WHERE id = $3", [username, password, id])
+    const id = req.params.id
+    const update = await db.query("UPDATE USERS SET username = $1, password = $2 WHERE id = $3", [username, password, id])
     res.redirect('/users/allusers')
 }
 
