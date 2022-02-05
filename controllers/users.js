@@ -11,11 +11,11 @@ const db = new Pool(config.POSTGRES_INFO)
 export const index = (req, res)=> {
     res.render('users/index');
 }
-export const get_signin = (req, res)=> {
-    // var messages = req.flash('error')
-    res.render('users/signin',{hasError :0
-        // messages:messages
-        //hasErrors: messages.legth>0,
+export const get_signin = async (req, res) => {
+    //console.log(req.headers.cookie)
+    if(req.headers.cookie != null) res.status(500).redirect('/users/logout') 
+    else
+     res.render('users/signin',{hasError :0
     })
 }
 export const post_signin = async(req,res1)=> {
@@ -25,7 +25,7 @@ export const post_signin = async(req,res1)=> {
         res1.status(500).render('users/signin',{hasError: 1,msg: 'Missing some value'})
     else{
         try{
-            var user = await db.query('SELECT * FROM USERS WHERE username = $1 and password = $2 LIMIT 1',[u,p])
+            var user = await db.query('SELECT * FROM USERS WHERE username = $1 and password = $2',[u,p])
         } catch(err){
             console.log(err.stack)
         }
@@ -106,5 +106,28 @@ export const post_showusers = async (req,res) => {
     }
     res.redirect('/users/allusers')
 }
+export const deleteUser = async (req, res) => {
+    const {id} = req.body
+    const del = await db.query("DELETE FROM USERS WHERE id = $1", [id])
+    res.redirect('/users/allusers')
+}
 
+export const get_updateUser = async (req, res) => {
+    res.render('/users/editUsers')
+}
+
+export const post_updateUser = async (req, res) => {
+    const id = req.params.id
+    const {username, password} = req.body
+    const update = await db.query("UPDATE USERS SET username = $1 and password = $2 WHERE id = $3", [username, password, id])
+    res.redirect('/users/allusers')
+}
+
+export const get_logout = async(req, res) => {
+    res.render('users/logout')
+}
+export const post_logout = async(req, res) => {
+    res.clearCookie('token')
+    res.status(500).redirect('/users/signin')
+}
 export default router;
