@@ -1,0 +1,27 @@
+#sign-in{
+    border: 5px solid #9c9df5;
+    border-radius: 10px;
+    box-shadow: 1px 1px 3px 2px #ced4f5;
+    padding: 10px 20px 20px 20px;
+    z-index: 100;
+    min-width: 300px;
+}
+#sign-in h3{
+    color: #9c9df5;
+    font-size: 25px;
+}
+.base-btn{
+    margin: 10px 0;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #9c9df5;
+    box-shadow: 1px 1px 2px 2px #f7e0e0;
+}
+.base-btn:hover,
+.base-btn:focus{
+    background-color: #9f88f1;
+}
+.base-btn:active{
+    background-color: #9f88f1;
+    box-shadow: 0 0 0;
+} 

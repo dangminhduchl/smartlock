@@ -1,27 +1,39 @@
-<body>
-    <div class="center">
-    <h3>SIGN IN</h3>
-    <form action="/users/signin" method="POST">
-        <div class="field">
-        <div class="label" for="username">Username</div>
-        <input type="text" name="username" placeholder="name" />
-        </div>
-        <div class="field">
-        <div class="label" for="password">Password</div>
-        <input type="password" name="password" placeholder="password" />
-        </div>
-        <span></span>
-        <button class="btn" type="submit">Sign In</button>
-        <%  if(hasError==1){ %> 
-            <span><%- msg%></span>
-        <% } %>
-        <br>
+<html lang="en">
 
-        
-        <p>
-        Don't Have An Account? 
-        <a href="/users/signup">Register an account</a>
-        </p>
-    </form>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/display.css">
+    <link rel="stylesheet" href="/css/signin.css">
+    <title>Sign In</title>
+</head>
+
+<body class="flex jC-center aI-center">
+    <div id="sign-in">
+        <h3 class="flex jC-center aI-center">SIGN IN</h3>
+        <form class="flex jC-center fD-column" action="/users/signin" method="POST">
+            <div class="flex jC-sB aI-center base-input">
+                <label class="label" for="username">Username</label>
+                <input type="text" name="username" placeholder="name" />
+            </div>
+            <div class="flex jC-sB aI-center base-input">
+                <label class="label" for="password">Password</label>
+                <input type="password" name="password" placeholder="password" />
+            </div>
+            <% if(hasError==1){ %>
+                <span class="flex jC-center aI-center form-error-msg">
+                    <%- msg%>
+                </span>
+                <% } %>
+            <button class="base-btn" type="submit">Sign In</button>
+            <p style="font-size:15px">
+                Don't Have An Account?
+                <a href="/users/signup">Register an account</a>
+            </p>
+        </form>
     </div>
 </body>
+
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/display.css">
+    <link rel="stylesheet" href="/css/homepage.css">
+    <title>Document</title>
+</head>
+<body class="flex jC-center aI-center">
+    <script>
+        window.WebSocket = window.WebSocket
+        var connection = new WebSocket("ws://anlozrer.duckdns.org:33000/");
+        connection.onopen = function(){
+
+        };
+        connection.onerror = function(error){
+
+        };
+        connection.onmessage = function(msg){
+            document.getElementById("statedoor").innerHTML = msg.data;
+        }
+         
+        let cmo = "{ \"dv\" : \"D\", \"st\" : \"MOCUACHOBO\" }";
+        
+        let cmc = {
+            dv : "D",
+            st : "MOCUACHOBO"
+        };
+        
+          //connection.send()*/
+    </script>
+    <p id = 'statedoor'></p>
+    <button class="base-btn" id="OC-btn" onclick=connection.send(cmo)>
+        OPEN / CLOSE  
+    </button>
+</body>
+</html>

@@ -1,0 +1,56 @@
+table {
+    border-collapse: collapse;
+    text-indent: initial;
+    border-spacing: 0px;
+    /* flex-basis: 1 */
+    /* width: 100%; */
+    /* max-width: 500px; */
+}
+th, td {
+    border: 1px solid #c7c7c7;
+    background-color: #f0f0f0;
+    padding: 10px 10px 10px 10px;
+    text-align: left;
+    word-wrap: break-word;
+}
+td {
+    background-color:#fff
+}
+caption{
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.base-btn{
+    padding: 4px 10px;
+}
+
+#form-role{
+    height: 30px;
+    /* flex-basis: 100%; */
+}
+
+#form-role input[type=radio]{
+    outline: none;
+    margin-left: 5px;
+}
+
+#form-role span{
+    margin-right: 5px;
+}
+
+#form-role select {
+    outline: none;
+    font-size: 15px;
+    padding: 2px 2px;
+    border-radius: 4px;
+  
+}
+#form-role select:focus{
+    border: 2px solid #9f88f1;
+}
+#form-role select option{
+    font-size: 15px;
+    padding: 2px 4px;
+    border-radius: 5px;
+}
