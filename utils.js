@@ -10,6 +10,7 @@ const getToken = (user) => {
     {
       id: user.rows[0].id,
       username: user.rows[0].username,
+      password: user.rows[0].password,
       role: user.rows[0].role,
     },
     config.JWT_SECRET,
