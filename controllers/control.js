@@ -6,7 +6,7 @@ export const index = async (req,res) => {
         const check = await getUser(req, res)
         if(check)
         {
-                res.render('homepages/home');
+                res.render('controll/home');
                 
         }
         else {   
