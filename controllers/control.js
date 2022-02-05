@@ -4,6 +4,7 @@ import { getToken, getUser } from '../utils.js';
 const router = express.Router()
 export const index = async (req,res) => {
         const check = await getUser(req, res)
+        if(check == -1) return;
         if(check)
         {
                 res.render('controll/home');

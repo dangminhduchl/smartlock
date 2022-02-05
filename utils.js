@@ -49,12 +49,13 @@ export var getUser = async (req, res) => {
         }
         id = decode.id
     });
-    if(id == 0) res.status(500).send('You must log in first') 
+    if(id == 0) res.redirect('/users/signin')
     else {
         const user = await db.query('SELECT * FROM USERS WHERE id = $1', [id])
         const role = user.rows[0].role
         return role 
     }
+    return -1
 }
 
 export { getToken, checkAdmin};
