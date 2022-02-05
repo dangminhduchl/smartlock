@@ -1,24 +1,37 @@
-<body>
-    <div class="center">
-    <h3>SIGN UP</h3>
-    <form action="/users/signup" method="POST">
-        <div class="field">
-        <div class="label" for="username">Username</div>
-        <input type="text" name="username" placeholder="name" />
-        </div>
-        <div class="field">
-        <div class="label" for="password">Password</div>
-        <input type="password" name="password" placeholder="password" />
-        </div>
-        <%  if(hasError==1){ %> 
-            <span><%- msg%></span>
-        <% } %>
-        <br>
-        <button class="btn" type="submit">Sign Up</button>
-        <p>
-            Da co tai khoan? 
-            <a href = 'signin'>Sign In</a>
-        </p>>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/display.css">
+    <link rel="stylesheet" href="/css/signin.css">
+    <title>Sign In</title>
+</head>
+
+<body class="flex jC-center aI-center">
+    <div id="sign-in">
+        <h3 class="flex jC-center aI-center">SIGN UP</h3>
+        <form class="flex jC-center fD-column" action="/users/signup" method="POST">
+            <div class="flex jC-sB aI-center base-input">
+                <label class="label" for="username">Username</label>
+                <input type="text" name="username" placeholder="name" />
+            </div>
+            <div class="flex jC-sB aI-center base-input">
+                <label class="label" for="password">Password</label>
+                <input type="password" name="password" placeholder="password" />
+            </div>
+            <% if(hasError==1){ %>
+                <span class="flex jC-center aI-center form-error-msg">
+                    <%- msg%>
+                </span>
+                <% } %>
+            <button class="base-btn" type="submit">Sign Up</button>
+            <p style="font-size:15px">
+                Have an account already?
+                <a href='signin'>Sign In</a>
+            </p>
         </form>
     </div>
 </body>

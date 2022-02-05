@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/display.css">
+    <link rel="stylesheet" href="/css/homepage.css">
     <title>Document</title>
 </head>
-<body>
+<body class="flex jC-center aI-center">
     <script>
         window.WebSocket = window.WebSocket
         var connection = new WebSocket("ws://anlozrer.duckdns.org:33000/");
@@ -30,7 +33,7 @@
           //connection.send()*/
     </script>
     <p id = 'statedoor'></p>
-    <button onclick=connection.send(cmo)>
+    <button class="base-btn" id="OC-btn" onclick=connection.send(cmo)>
         OPEN / CLOSE  
     </button>
 </body>
