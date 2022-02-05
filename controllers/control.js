@@ -5,7 +5,7 @@ const router = express.Router()
 export const index = function(req,res) {
         if(authuser.role)
         {
-                res.render('homepages/home');
+                res.render('controll/home');
 
         }
         else {

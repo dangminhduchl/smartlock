@@ -10,9 +10,6 @@ const app = express();
 const port = 3000; 
 const server = http.createServer(app).listen(port);
 var eWs = expressWs(app,server);
-var CLIENT = []
-
-
 
 
 app.set('views', './views'); // Thư mục views nằm cùng cấp với file app.js
@@ -40,14 +37,6 @@ app.use('/users',usersrRoute)
 app.use('/control',controlRoute)
 
 app.ws('/',async function(ws,req) {
-    ws.getUniqueID =()=> {
-        function s4() {
-            return Math.floor((1+Math.random())* 0x10000).toString(16).substring(1)
-            
-        }
-        return s4()+s4()+'-'+s4();
-        
-    }
     ws.on('connection',(ws,req)=>{
         ws.id =Ews.getUniqueID();
         ews.client.forEach( (client)=>{
@@ -73,7 +62,7 @@ app.ws('/',async function(ws,req) {
         }
         if (msgJson.dv=="D")
         {
-            if(msgJson.st=="MOCUACHOBO")
+            if(msgJson.st=="open")
             {
                 if(state.magnet_switch == 0)
                 {
@@ -82,12 +71,13 @@ app.ws('/',async function(ws,req) {
                 }
                 if(state.magnet_switch == 1)
                 {
+                    
                     console.log("CUADANGMOSANROI")
                 }
             }
 
                 
-            if(msgJson.st=="DONGCUACHOBO")
+            if(msgJson.st=="close")
             {    
                 state.doorstate = 0;
             }
@@ -98,7 +88,10 @@ app.ws('/',async function(ws,req) {
             {    
                 client.send(msgJson.st);
             }
-           
+            if(msgJson.dv=="D")
+            {    
+                client.send(msgJson.st);
+            }
         });
         console.log(state);
         

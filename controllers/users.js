@@ -37,7 +37,7 @@ export const post_signin = async(req,res1)=> {
             console.log(user.rows[0])
             console.log(authuser)
             if(authuser.role > 0){
-                res1.render('homepages/home')
+                res1.render('controll/home')
             }
             else{
                 res1.render('users/signin',{hasError:1,msg:'Admin chua cap quyen, hay lien he voi admin'})

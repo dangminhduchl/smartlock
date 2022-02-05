@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        window.WebSocket = window.WebSocket
+        var connection = new WebSocket("ws://anlozrer.duckdns.org:33000/");
+        connection.onopen = function(){
+
+        };
+        connection.onerror = function(error){
+
+        };
+        connection.onmessage = function(msg){
+            if(msg.data == "CUA DANG DONG" || msg.data == 'CUA DANG MO'){
+            document.getElementById("statedoor").innerText = msg.data;
+            }
+            else
+            {
+                document.getElementById("command").innerHTML = msg.data;
+                if(msg.data == "close" ) document.getElementById("controllbutton").innerText = "open";
+                else document.getElementById("controllbutton").innerText = "close";
+            }
+          
+        }
+        
+        let cmo = {
+            dv : "D",
+            st : "open"
+        };
+        
+        let cmc = {
+            dv : "D",
+            st : "close"
+        };
+        function buttonOnclick(etc) {
+            let state = etc.innerText;
+            if(state == "open") connection.send(JSON.stringify(cmo))
+            else connection.send(JSON.stringify(cmc))
+        }
+          //connection.send()
+    </script>
+    <p id = 'statedoor'></p>
+    <button id = "controllbutton" onclick="buttonOnclick(this)">
+        open
+    </button>
+    <p id = 'command'></p>
+</body>
+</html>
