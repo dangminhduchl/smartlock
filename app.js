@@ -5,6 +5,10 @@ import flash from 'connect-flash';
 import http from'http'
 import usersrRoute from'./routes/users.js'
 import controlRoute from './routes/control.js'
+import {fileURLToPath} from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express(); 
 const port = 3000; 
@@ -19,8 +23,8 @@ app.set('views', './views'); // Thư mục views nằm cùng cấp với file ap
 app.set('view engine', 'ejs'); // Sử dụng pug làm view engine
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-
-
+app.use(express.static(path.join(__dirname,'/public')))
+console.log(path.join(__dirname,'/public'))
 // catch 404 and forward to error handler
 
 
