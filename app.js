@@ -33,7 +33,7 @@ console.log(path.join(__dirname,'/public'))
 //0 la dong
 var state ={
     "magnet_switch": 0,
-    "doorstate" : 0,
+    "unlock" : 0,
 }    
 
 app.use('/users',usersrRoute)
@@ -64,13 +64,13 @@ app.ws('/',async function(ws,req) {
                 state.magnet_switch = 0;
             }
         }
-        if (msgJson.dv=="D")
+        if (msgJson.dv=="L")
         {
             if(msgJson.st=="open")
             {
                 if(state.magnet_switch == 0)
                 {
-                    state.doorstate = 1;
+                    state.unlock = 1;
                     console.log("DANGMOCUA")
                 }
                 if(state.magnet_switch == 1)
@@ -83,7 +83,7 @@ app.ws('/',async function(ws,req) {
                 
             if(msgJson.st=="close")
             {    
-                state.doorstate = 0;
+                state.unlock = 0;
             }
         }
         socket.clients.forEach((client) => {
@@ -92,7 +92,7 @@ app.ws('/',async function(ws,req) {
             {    
                 client.send(msgJson.st);
             }
-            if(msgJson.dv=="D")
+            if(msgJson.dv=="L")
             {    
                 client.send(msgJson.st);
             }
