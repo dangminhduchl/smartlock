@@ -4,3 +4,36 @@
     padding: 20px 20px;
     text-transform: uppercase;
 }
+
+.nav-bar {
+    box-sizing: border-box;
+    padding: 5px 10px;
+    padding-right: 0;
+    position: absolute;
+    top: 0;
+    background-color: #9f88f1;
+    height: 50px;
+    width: 100%;
+}
+.nav-btn {
+    text-transform: uppercase;
+    background-color: transparent;
+    border-radius: unset;
+    height: 50px;
+    /* position: absolute; */
+    /* right: 0; */
+    /* top: 100px */
+}
+
+.nav-btn:hover {
+    background-color: #b3a2f0;
+
+}
+
+
+
+#logout-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
