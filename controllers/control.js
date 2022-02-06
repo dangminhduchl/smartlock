@@ -1,15 +1,17 @@
 import express from 'express'
-import { getToken } from '../utils.js';
-import authuser from './users.js'
+import { getToken, getUser } from '../utils.js';
+//import authuser from './users.js'
 const router = express.Router()
-export const index = function(req,res) {
-        if(authuser.role)
+export const index = async (req,res) => {
+        const check = await getUser(req, res)
+        if(check == -1) return;
+        if(check)
         {
                 res.render('controll/home');
-
+                
         }
-        else {
-                res.status(500).redirect('users/signin',{hasError: 1,msg:'Ban khong co quyen truy cap'})
+        else {   
+                res.redirect('/users/signin')
         }
 }
 export default router
