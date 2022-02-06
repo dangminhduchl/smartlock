@@ -72,6 +72,7 @@ app.ws('/',async function(ws,req) {
                 {
                     state.unlock = 1;
                     console.log("DANGMOCUA")
+                    
                 }
                 if(state.magnet_switch == 1)
                 {
