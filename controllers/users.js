@@ -13,8 +13,8 @@ export const index = (req, res)=> {
 }
 export const get_signin = async (req, res) => {
     //console.log(req.headers.cookie)
-    if(req.headers.cookie != null) res.status(500).redirect('/users/logout') 
-    else
+    // if(req.headers.cookie != null) res.status(500).redirect('/users/logout') 
+    // else
      res.render('users/signin',{hasError :0
     })
 }
@@ -34,10 +34,9 @@ export const post_signin = async(req,res1)=> {
             var token = getToken(user)
             res1.cookie('token',token,{expires: new Date(Date.now()+90000000)})
             let authuser = new users(user.rows[0].id, user.rows[0].username,user.rows[0].password,user.rows[0].role,token)
-            console.log(user.rows[0])
-            console.log(authuser)
             if(authuser.role > 0){
-                res1.render('controll/home')
+                var isAdmin = authuser.role == 2? true: false 
+                res1.render('controll/home', {isAdmin: isAdmin})
             }
             else{
                 res1.render('users/signin',{hasError:1,msg:'Admin chua cap quyen, hay lien he voi admin'})
@@ -128,6 +127,6 @@ export const get_logout = async(req, res) => {
 }
 export const post_logout = async(req, res) => {
     res.clearCookie('token')
-    res.status(500).redirect('/users/signin')
+    res.status(200).redirect('/users/signin')
 }
 export default router;

@@ -38,7 +38,7 @@ var state ={
 
 app.use('/users',usersrRoute)
 //get the /ws websocket route 
-app.use('/control',controlRoute)
+app.use('/',controlRoute)
 
 app.ws('/',async function(ws,req) {
     ws.on('connection',(ws,req)=>{

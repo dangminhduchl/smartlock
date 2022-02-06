@@ -11,7 +11,6 @@ user_router.get('/signup',user_controller.get_signup)
 user_router.post('/signup',user_controller.post_signup)
 user_router.get('/:id/edit',checkAdmin, user_controller.get_updateUser)
 user_router.post('/:id/edit',checkAdmin, user_controller.post_updateUser)
-user_router.get('/logout',user_controller.get_logout)
 user_router.post('/logout',user_controller.post_logout)
-
+// user_router.get('/')
 export default user_router;
