@@ -106,13 +106,16 @@ export const post_showusers = async (req,res) => {
     res.redirect('/users/allusers')
 }
 export const deleteUser = async (req, res) => {
-    const {id} = req.body
+    const {id} = req.params.id
     const del = await db.query("DELETE FROM USERS WHERE id = $1", [id])
     res.redirect('/users/allusers')
 }
 
 export const get_updateUser = async (req, res) => {
-    res.render('users/editUsers')
+    const id = req.params.id
+    var user = await db.query('SELECT * FROM USERS WHERE id=$1 LIMIT 1',[id])
+    user= user.rows[0]
+    res.render('users/editUsers', {username: user.username, role: user.role, password: user.password, id: user.id})
 }
 
 export const post_updateUser = async (req, res) => {

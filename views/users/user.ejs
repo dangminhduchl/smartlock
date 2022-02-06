@@ -20,6 +20,7 @@
             <th>username</th>
             <th>Password </th>
             <th>Role</th>
+            <th>Action</th>
         </tr>
         <% user.forEach(u=> { %>
             <tr>
@@ -35,11 +36,16 @@
                 <td>
                     <%- u.role%>
                 </td>
+                <td class="flex jC-sB aI-center">
+                    <button class="base-btn action-btn">delete</button>
+                    <button class="base-btn action-btn">edit</button>
+
+                </td>
                 <% }) %>
             </tr>
     </table>
     <br>
-    <form class="flex jC-sB aI-center" id="form-role" action="allusers" method="POST">
+    <!-- <form class="flex jC-sB aI-center" id="form-role" action="allusers" method="POST">
         <select name="username">
             <% user.forEach(u=> { %>
                 <option value=<%- u.username%>><%- u.username %>
@@ -50,7 +56,7 @@
         <input type="radio" name="setrole" value=1> <span>1</span> 
         <input type="radio" name="setrole" value=2> <span>2</span> 
         <button class="base-btn" type="submit">Set role</button>
-    </form>
+    </form> -->
 </body>
 
 </html>
