@@ -7,12 +7,22 @@
     <link rel="stylesheet" href="/css/base.css">
     <link rel="stylesheet" href="/css/users.css">
     <link rel="stylesheet" href="/css/display.css">
+    <link rel="stylesheet" href="/css/homepage.css" />
+
 
     <title>Document</title>
 </head>
 
 <body class="flex jC-center aI-center fD-column">
-    <!-- <h2> LIST USER </h2> -->
+    <nav class="flex jC-fS aI-center nav-bar">
+        <img class="flex jC-center" style="height:20px; margin-right: 10px;" src="/image/logo_knock_white.png" alt="">
+
+        <a href="/users/" class="base-btn nav-btn">controll door</a>
+     
+        <form action="logout" method="POST">
+          <button class="base-btn nav-btn" id="logout-btn" type="submit">Log Out</button>
+        </form>
+    </nav>
     <table>
         <caption>LIST USER</caption>
         <tr>
@@ -37,26 +47,14 @@
                     <%- u.role%>
                 </td>
                 <td class="flex jC-sB aI-center">
-                    <button class="base-btn action-btn">delete</button>
-                    <button class="base-btn action-btn">edit</button>
-
+                    <a class="base-btn action-btn" href="/users/<%- u.id%>/delete">delete</button>
+                    <a class="base-btn action-btn" href="/users/<%- u.id%>/edit">edit</a>
                 </td>
                 <% }) %>
             </tr>
     </table>
     <br>
-    <!-- <form class="flex jC-sB aI-center" id="form-role" action="allusers" method="POST">
-        <select name="username">
-            <% user.forEach(u=> { %>
-                <option value=<%- u.username%>><%- u.username %>
-                </option>
-                <% }) %>
-        </select> &nbsp
-        <input type="radio" name="setrole" value=0 checked> <span>0</span> 
-        <input type="radio" name="setrole" value=1> <span>1</span> 
-        <input type="radio" name="setrole" value=2> <span>2</span> 
-        <button class="base-btn" type="submit">Set role</button>
-    </form> -->
+    <a class="base-btn" id="create-btn" href="/users/create">create</a>
 </body>
 
 </html>

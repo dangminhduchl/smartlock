@@ -22,7 +22,8 @@ caption{
     margin-bottom: 10px;
 }
 .base-btn{
-    padding: 4px 10px;
+    font-size: 14px;
+    padding: 4px 4px;
 }
 
 #form-role{

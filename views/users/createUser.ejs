@@ -1,0 +1,37 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/display.css">
+    <link rel="stylesheet" href="/css/signin.css">
+    <title>Sign In</title>
+</head>
+
+<body class="flex jC-center aI-center">
+    <div id="sign-in">
+        <h3 class="flex jC-center aI-center">Create</h3>
+        <form class="flex jC-center fD-column" action="/users/create" method="POST">
+            <div class="flex jC-sB aI-center base-input">
+                <label class="label" for="username">Username</label>
+                <input type="text" name="username" placeholder="name">
+            </div>
+            <div class="flex jC-sB aI-center base-input">
+                <label class="label" for="password">Password</label>
+                <input type="text" name="password" placeholder="password">
+            </div>
+            <div class="flex jC-sB aI-center base-input">
+                <label class="label" for="role">Role</label>
+                <input type="number" name="role" placeholder="role">
+            </div>
+            <% if(hasError==1){ %>
+                <span class="flex jC-center aI-center form-error-msg">
+                    <%- msg%>
+                </span>
+                <% } %>
+            <button class="base-btn" type="submit">Create</button>
+        </form>
+    </div>
+</body>

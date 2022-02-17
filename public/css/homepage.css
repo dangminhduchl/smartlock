@@ -20,6 +20,7 @@
     background-color: transparent;
     border-radius: unset;
     height: 50px;
+    padding: auto 10px;
     /* position: absolute; */
     /* right: 0; */
     /* top: 100px */
@@ -37,3 +38,10 @@
     right: 0;
     top: 0;
 }
+
+#create-btn {
+    padding: 10px;
+    font-weight: 700;
+    text-transform: uppercase
+}
+
