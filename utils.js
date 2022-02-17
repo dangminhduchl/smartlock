@@ -40,6 +40,28 @@ const checkAdmin = async (req, res, next) => {
   else return next()
 };
 
+export var checkAuth = async (req, res, next) => {
+  if(req.headers.cookie == null){
+    res.redirect('/')
+    return
+  }
+  const token = req.headers.cookie.slice(6, req.headers.cookie.length)
+  var id = 0
+  jwt.verify(token, config.JWT_SECRET, (err, decode) => {
+      if (err) {
+        res.status(401).send({ message: 'Error in authentication' }); 
+        return 0
+      }
+      id = decode.id
+  });
+  const user = await db.query('SELECT * FROM USERS WHERE id = $1', [id])
+  if(user.rows.length >0){
+    req.role=user.rows[0].role
+    return next()
+  }
+  else res.status(401).send({ message: 'Can not access' });
+}
+
 export var getUser = async (req, res) => {
     const token = req.headers.cookie.slice(6, req.headers.cookie.length)
     var id = 0

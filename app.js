@@ -21,7 +21,7 @@ app.set('view engine', 'ejs'); // Sử dụng pug làm view engine
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(express.static(path.join(__dirname,'/public')))
-console.log(path.join(__dirname,'/public'))
+console.log("http://localhost:3000")
 // catch 404 and forward to error handler
 
 
