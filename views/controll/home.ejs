@@ -11,7 +11,7 @@
     <title>Document</title>
   </head>
 
-  <body class="flex jC-center aI-center fD-column">
+  <body class="flex aI-center fD-column">
     <script>
       window.WebSocket = window.WebSocket;
       var connection = new WebSocket("ws://anlozrer.duckdns.org:33000/");
@@ -53,7 +53,10 @@
         <button class="base-btn nav-btn" id="logout-btn" type="submit">Đăng xuất</button>
       </form>
     </nav>
-    <p id="statedoor"></p>
-    <button class="base-btn" id="OC-btn" onclick="buttonOnclick(event)">mở</button>
+    <div class="content-wrapper flex fD-column aI-center jC-center">
+      <p id="statedoor"></p>
+      <button class="base-btn" id="OC-btn" onclick="buttonOnclick(event)">mở</button>
+    </div>
+   
   </body>
 </html>

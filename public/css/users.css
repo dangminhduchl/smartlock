@@ -1,20 +1,47 @@
+#table-wrapper{
+    position: relative;
+    overflow: auto;
+    margin-bottom: 20px;
+}
 table {
-    border-collapse: collapse;
+    /* width: 100vw; */
+    border-collapse: separate;
     text-indent: initial;
     border-spacing: 0px;
-    /* flex-basis: 1 */
-    /* width: 100%; */
-    /* max-width: 500px; */
+}
+table thead{
+    position: sticky;
+    top:0;
 }
 th, td {
-    border: 1px solid #c7c7c7;
+    border: 0.75px solid #c7c7c7;
     background-color: #f0f0f0;
     padding: 10px 10px 10px 10px;
     text-align: left;
     word-wrap: break-word;
+    /* text-overflow: ellipsis; */
 }
 td {
     background-color:#fff
+}
+tr td:last-child{
+    border-right-width: 2px;
+}
+tr td:first-child{
+    border-left-width: 2px;
+}
+tr th:last-child{
+    border-right-width: 2px;
+}
+tr th:first-child{
+    border-left-width: 2px;
+}
+tr th{
+    border-top-width: 2px;
+}
+
+tr:last-child td{
+    border-bottom-width: 2px;
 }
 caption{
     font-size: 25px;
@@ -27,10 +54,78 @@ caption{
 
 .action-btn{
     margin: 2px;
-    padding: 4px 4px;
+    padding: 5px 5px;
 }
 
 .base-input input[type=radio]{
     outline: none;
     margin-left: 10px;
+}
+
+@media only screen and (max-width: 700px){
+    #table-wrapper{
+        position: relative;
+        height: calc(100vh - 240px); 
+        overflow: auto;
+    }
+    table {
+        /* width: 98%; */
+        table-layout: fixed;
+    }
+    td{
+        padding: 0px 5px 0px 5px;
+    }
+   
+    th:nth-child(1){
+        width: 1em;   
+    }
+    th:nth-child(4){
+        width: 3.5em
+    }
+    th:nth-child(5){
+     
+        width: 4em;
+    }
+    tr td:nth-child(5){
+        flex-direction: column;
+    }
+    .action-btn{
+        width: 90%;
+        margin: 4px;
+    }
+    td .action-btn:first-child{
+        margin-bottom: 0.5em;
+    }
+}
+
+/* custom-scrollbar */
+
+::-webkit-scrollbar {
+    width: 0.6rem;
+    height: 0.6rem;
+    position: absolute;
+    /* top: 40px; */
+    left: 10px;
+}
+
+
+/* Track */
+
+::-webkit-scrollbar-track {
+    background: #F4F5F8;
+}
+
+
+/* Handle */
+
+::-webkit-scrollbar-thumb {
+    background: rgb(172, 169, 169);
+    border-radius: 0.4em;
+}
+
+
+/* Handle on hover */
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(112, 112, 112);
 }
