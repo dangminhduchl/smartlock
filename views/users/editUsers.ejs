@@ -23,10 +23,37 @@
                 <input type="text" name="password" placeholder="password" value=<%- password%>>
             </div>
             <div class="flex jC-sB aI-center base-input">
-                <label class="label" for="role">Role</label>
-                <input type="number" name="role" placeholder="role" value=<%- role%>>
+                <div class="flex jC-sB aI-center base-input" style="width: 100%">
+                    <label for="">Role</label>
+                    <div class="flex jc-sE aI-center">
+                        <input type="radio" name="role" value="0" 
+                            <% if(role==0){
+                                %>checked<%
+                            }
+                            %>
+                        >
+                        <label class="label" for="no-role">no role</label>
+                        <input type="radio" name="role" value="1"
+                            <% if(role==1){
+                                %>checked<%
+                            }
+                            %>
+                        >
+                        <label class="label" for="role-user">user</label>
+                        <input type="radio" name="role" value="2"
+                            <% if(role==2){
+                                %>checked<%
+                            }
+                            %>
+                        >
+                        <label class="label" for="role-admin">admin</label>
+                    </div>
+                </div>
             </div>
-            <button class="base-btn" type="submit">Update</button>
+            <div class="flex jc-sE aI-center">
+                <button class="base-btn" type="submit">Update</button>
+                <a href="/users/allusers" class="base-btn">Cancel</a>
+            </div>
         </form>
     </div>
 </body>

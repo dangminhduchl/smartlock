@@ -16,11 +16,13 @@
     width: 100%;
 }
 .nav-btn {
+    font-weight: 700;
     text-transform: uppercase;
     background-color: transparent;
     border-radius: unset;
     height: 50px;
     padding: auto 10px;
+    /* font-size: 1.2em; */
     /* position: absolute; */
     /* right: 0; */
     /* top: 100px */

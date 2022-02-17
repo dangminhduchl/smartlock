@@ -44,7 +44,17 @@
                     <%- u.password%>
                 </td>
                 <td>
-                    <%- u.role%>
+                    <% switch(u.role){ 
+                        case 1: %>
+                            user
+                            <% break;
+                        case 2: %>
+                            admin
+                            <% break;
+                        default: %>
+                            no role
+                            <% break;
+                    } %>
                 </td>
                 <td class="flex jC-sB aI-center">
                     <a class="base-btn action-btn" href="/users/<%- u.id%>/delete">delete</button>

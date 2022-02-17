@@ -23,15 +23,28 @@
                 <input type="text" name="password" placeholder="password">
             </div>
             <div class="flex jC-sB aI-center base-input">
-                <label class="label" for="role">Role</label>
-                <input type="number" name="role" placeholder="role">
+                <label for="">Role</label>
+                <div class="flex jc-sE aI-center" style="width: 100%">
+                    <input type="radio" name="role" value="0" checked>
+                    <label class="label" for="no-role">no role</label>
+
+                    <input type="radio" name="role" value="1">
+                    <label class="label" for="role-user">user</label>
+              
+                    <input type="radio" name="role" value="2">
+                    <label class="label" for="role-admin">admin</label>
+                </div>
             </div>
             <% if(hasError==1){ %>
                 <span class="flex jC-center aI-center form-error-msg">
                     <%- msg%>
                 </span>
                 <% } %>
-            <button class="base-btn" type="submit">Create</button>
+            <div class="flex jc-sE aI-center">
+                <button class="base-btn" type="submit">Create</button>
+                <a href="/users/allusers" class="base-btn">Cancel</a>
+            </div>
+           
         </form>
     </div>
 </body>

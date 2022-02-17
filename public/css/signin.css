@@ -11,6 +11,7 @@
     font-size: 25px;
 }
 .base-btn{
+    font-weight: 600;
     margin: 10px 0;
     border-radius: 6px;
     color: #fff;
@@ -25,3 +26,8 @@
     background-color: #9f88f1;
     box-shadow: 0 0 0;
 } 
+
+.base-input input[type=radio]{
+    outline: none;
+    margin-left: 10px;
+}
