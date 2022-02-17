@@ -41,7 +41,7 @@ export const post_signin = async(req,res1)=> {
             let authuser = new users(user.rows[0].id, user.rows[0].username,user.rows[0].password,user.rows[0].role,token)
             if(authuser.role > 0){
                 // var isAdmin = authuser.role == 2? true: false 
-                res1.redirect("/users")
+                res1.redirect("/users/controll")
                 // res1.render('controll/home', {isAdmin: isAdmin})
             }
             else{

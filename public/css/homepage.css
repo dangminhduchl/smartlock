@@ -16,6 +16,7 @@
     width: 100%;
 }
 .nav-btn {
+    font-size: 14px;
     font-weight: 700;
     text-transform: uppercase;
     background-color: transparent;
