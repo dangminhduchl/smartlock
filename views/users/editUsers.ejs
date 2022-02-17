@@ -12,19 +12,19 @@
 
 <body class="flex jC-center aI-center">
     <div id="sign-in">
-        <h3 class="flex jC-center aI-center">Update</h3>
+        <h3 class="flex jC-center aI-center">Cập nhật</h3>
         <form class="flex jC-center fD-column" action="/users/<%- id%>/edit" method="POST">
             <div class="flex jC-sB aI-center base-input">
-                <label class="label" for="username">Username</label>
-                <input type="text" name="username" placeholder="name" value=<%- username%> >
+                <label class="label" for="username">Tên đăng nhập</label>
+                <input type="text" name="username" placeholder="username" value=<%- username%> >
             </div>
             <div class="flex jC-sB aI-center base-input">
-                <label class="label" for="password">Password</label>
+                <label class="label" for="password">Mật khẩu</label>
                 <input type="text" name="password" placeholder="password" value=<%- password%>>
             </div>
             <div class="flex jC-sB aI-center base-input">
                 <div class="flex jC-sB aI-center base-input" style="width: 100%">
-                    <label for="">Role</label>
+                    <label for="">Quyền</label>
                     <div class="flex jc-sE aI-center">
                         <input type="radio" name="role" value="0" 
                             <% if(role==0){
@@ -32,7 +32,7 @@
                             }
                             %>
                         >
-                        <label class="label" for="no-role">no role</label>
+                        <label class="label" for="no-role">none</label>
                         <input type="radio" name="role" value="1"
                             <% if(role==1){
                                 %>checked<%
@@ -51,8 +51,8 @@
                 </div>
             </div>
             <div class="flex jc-sE aI-center">
-                <button class="base-btn" type="submit">Update</button>
-                <a href="/users/allusers" class="base-btn">Cancel</a>
+                <button class="base-btn" type="submit">Cập nhật</button>
+                <a href="/users/allusers" class="base-btn">Hủy</a>
             </div>
         </form>
     </div>

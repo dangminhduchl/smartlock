@@ -12,18 +12,18 @@
 
 <body class="flex jC-center aI-center">
     <div id="sign-in">
-        <h3 class="flex jC-center aI-center">Create</h3>
+        <h3 class="flex jC-center aI-center">Thêm mới</h3>
         <form class="flex jC-center fD-column" action="/users/create" method="POST">
             <div class="flex jC-sB aI-center base-input">
-                <label class="label" for="username">Username</label>
-                <input type="text" name="username" placeholder="name">
+                <label class="label" for="username">Tên đăng nhập</label>
+                <input type="text" name="username" placeholder="username">
             </div>
             <div class="flex jC-sB aI-center base-input">
-                <label class="label" for="password">Password</label>
+                <label class="label" for="password">Mật khẩu</label>
                 <input type="text" name="password" placeholder="password">
             </div>
             <div class="flex jC-sB aI-center base-input">
-                <label for="">Role</label>
+                <label for="">Quyền</label>
                 <div class="flex jc-sE aI-center" style="width: 100%">
                     <input type="radio" name="role" value="0" checked>
                     <label class="label" for="no-role">no role</label>
@@ -41,8 +41,8 @@
                 </span>
                 <% } %>
             <div class="flex jc-sE aI-center">
-                <button class="base-btn" type="submit">Create</button>
-                <a href="/users/allusers" class="base-btn">Cancel</a>
+                <button class="base-btn" type="submit">Thêm mới</button>
+                <a href="/users/allusers" class="base-btn">Hủy</a>
             </div>
            
         </form>

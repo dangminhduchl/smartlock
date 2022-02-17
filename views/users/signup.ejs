@@ -12,14 +12,14 @@
 
 <body class="flex jC-center aI-center">
     <div id="sign-in">
-        <h3 class="flex jC-center aI-center">SIGN UP</h3>
+        <h3 class="flex jC-center aI-center">ĐĂNG KÝ</h3>
         <form class="flex jC-center fD-column" action="/users/signup" method="POST">
             <div class="flex jC-sB aI-center base-input">
-                <label class="label" for="username">Username</label>
-                <input type="text" name="username" placeholder="name" />
+                <label class="label" for="username">Tên đăng nhập</label>
+                <input type="text" name="username" placeholder="username" />
             </div>
             <div class="flex jC-sB aI-center base-input">
-                <label class="label" for="password">Password</label>
+                <label class="label" for="password">Mật khẩu</label>
                 <input type="password" name="password" placeholder="password" />
             </div>
             <% if(hasError==1){ %>
@@ -27,10 +27,10 @@
                     <%- msg%>
                 </span>
                 <% } %>
-            <button class="base-btn" type="submit">Sign Up</button>
+            <button class="base-btn" type="submit">Đăng ký</button>
             <p style="font-size:15px">
-                Have an account already?
-                <a href='signin'>Sign In</a>
+                Đã có tài khoản?
+                <a href='signin'>Đăng nhập</a>
             </p>
         </form>
     </div>

@@ -27,7 +27,7 @@ export const post_signin = async(req,res1)=> {
     let u = req.body.username;
     let p = req.body.password;
     if(u == ''||p == '')
-        res1.status(500).render('users/signin',{hasError: 1,msg: 'Vui lòng nhập đầy đủ thông tin'})
+        res1.status(500).render('users/signin',{hasError: 1,msg: 'Vui lòng nhập đầy đủ thông tin.'})
     else{
         try{
             var user = await db.query('SELECT * FROM USERS WHERE username = $1 and password = $2',[u,p])
@@ -45,11 +45,11 @@ export const post_signin = async(req,res1)=> {
                 // res1.render('controll/home', {isAdmin: isAdmin})
             }
             else{
-                res1.render('users/signin',{hasError:1,msg:'Admin chưa cấp quyền, hãy liên hệ với admin'})
+                res1.render('users/signin',{hasError:1,msg:'Admin chưa cấp quyền, hãy liên hệ với admin.'})
             }
         }
         else {
-            res1.status(500).render('users/signin',{hasError:1 ,msg:'Sai username hoặc password'});
+            res1.status(500).render('users/signin',{hasError:1 ,msg:'Sai tên đăng nhập hoặc mật khẩu.'});
         }
 
 
@@ -67,13 +67,15 @@ export const post_signup = function(req,res1) {
     let p = req.body.password;
     console.log(req.body);
     let user_info=[u,p];
+    if(u == ''||p == '')
+        res1.status(500).render('users/signup',{hasError: 1,msg: 'Vui lòng nhập đầy đủ thông tin.'})
     let sqlcheck = "select * from users where username = $1";
     db.query(sqlcheck,[u], (req,res) =>{
         if(res.rows.length>0)
         {
             
-            console.log("username da ton tai");
-            res1.status(500).render('users/signup',{hasError : 1,msg:'username đã tồn tại'});   
+            console.log("Tên đăng nhập đã tồn tại.");
+            res1.status(500).render('users/signup',{hasError : 1,msg:'Tên đăng nhập đã tồn tại.'});   
         }
         else {
 
@@ -142,13 +144,13 @@ export const post_create = async (req, res) => {
     if(role == ""){
         role=null
     }
-    if(username == '' || password == '') res.status(500).render('users/createUser',{hasError: 1,msg: 'Vui lòng nhập đầy đủ thông tin'})
+    if(username == '' || password == '') res.status(500).render('users/createUser',{hasError: 1,msg: 'Vui lòng nhập đầy đủ thông tin.'})
     let sqlcheck = "select * from users where username = $1";
     const users = await db.query(sqlcheck,[username])
   
     if(users.rows.length>0){
         console.log("username da ton tai");
-        res.status(500).render('users/createUser',{hasError : 1,msg:'username đã tồn tại'});   
+        res.status(500).render('users/createUser',{hasError : 1,msg:'Tên đăng nhập đã tồn tại.'});   
     }
     else {
 

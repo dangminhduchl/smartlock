@@ -23,8 +23,8 @@
         } else {
           // document.getElementById("command").innerHTML = msg.data;
           if (msg.data == "close")
-            document.getElementById("OC-btn").innerText = "open";
-          else document.getElementById("OC-btn").innerText = "close";
+            document.getElementById("OC-btn").innerText = "mở";
+          else document.getElementById("OC-btn").innerText = "đóng";
         }
       };
 
@@ -47,13 +47,13 @@
     <nav class="flex jC-fS aI-center nav-bar">
       <img class="flex jC-center" style="height:20px; margin-right: 10px;" src="/image/logo_knock_white.png" alt="">
       <% if(isAdmin){ %>
-        <a href="/users/allusers" class="base-btn nav-btn">manage user</a>
+        <a href="/users/allusers" class="base-btn nav-btn">Quản lý</a>
         <% } %>
       <form action="/users/logout" method="POST">
-        <button class="base-btn nav-btn" id="logout-btn" type="submit">Log Out</button>
+        <button class="base-btn nav-btn" id="logout-btn" type="submit">Đăng xuất</button>
       </form>
     </nav>
     <p id="statedoor"></p>
-    <button class="base-btn" id="OC-btn" onclick="buttonOnclick(event)">open</button>
+    <button class="base-btn" id="OC-btn" onclick="buttonOnclick(event)">mở</button>
   </body>
 </html>
