@@ -8,6 +8,7 @@ table {
     border-collapse: separate;
     text-indent: initial;
     border-spacing: 0px;
+    margin-right: 5px;
 }
 table thead{
     position: sticky;
@@ -18,8 +19,11 @@ th, td {
     background-color: #f0f0f0;
     padding: 10px 10px 10px 10px;
     text-align: left;
-    word-wrap: break-word;
-    /* text-overflow: ellipsis; */
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    /* max-width: 4em; */
+    /* word-wrap: break-word; */
 }
 td {
     background-color:#fff
@@ -65,11 +69,13 @@ caption{
 @media only screen and (max-width: 700px){
     #table-wrapper{
         position: relative;
-        height: calc(100vh - 240px); 
+        height: calc(100vh - 250px); 
         overflow: auto;
     }
     table {
-        /* width: 98%; */
+        width: 98%;
+
+        margin-right: 0px;
         table-layout: fixed;
     }
     td{
@@ -79,13 +85,20 @@ caption{
     th:nth-child(1){
         width: 1em;   
     }
+    /* th:nth-child(2){
+        width:  1em;
+    } */
+    th:nth-child(3){
+        width:  5em;
+
+    }
     th:nth-child(4){
         width: 3.5em
     }
     th:nth-child(5){
-     
         width: 4em;
     }
+
     tr td:nth-child(5){
         flex-direction: column;
     }
@@ -101,6 +114,7 @@ caption{
 /* custom-scrollbar */
 
 ::-webkit-scrollbar {
+
     width: 0.6rem;
     height: 0.6rem;
     position: absolute;
