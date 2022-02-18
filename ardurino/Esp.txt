@@ -1,0 +1,173 @@
+#include <ESP8266WiFi.h>
+#include <WebSocketsClient.h>
+#include <PubSubClient.h>
+// Replace with your network credentials
+/*char* ssid = "WFi Kien";
+char* password = "wwwfi123456";*/
+
+char* ssid = "Hoang Hiep";
+char* password = "14102003";
+//Set web server port number to 80
+//CREATE CLIENT SOCKET
+WebSocketsClient webSocket;
+const char* ip_host = "anlozrer.duckdns.org"; // ip host server
+const uint16_t port = 33000;
+ 
+WiFiClient espClient;
+PubSubClient client(espClient);
+// Assign output variables to GPIO pins
+const int magnet_switch = 5; // Magnet switch
+const int magnetLED = 14;
+const int lock = 4;
+
+// Current time
+long openTime=0;
+long closeTime=0;
+long currentTime=0;
+long lockTime=0;
+long unlockTime=0;
+
+long previousTime = 0; 
+
+const long timeoutTime = 10000;
+
+bool check =0;
+
+void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
+  switch (type) {
+    case WStype_DISCONNECTED:
+      Serial.printf("[WSc] Disconnected!\n");
+      break;
+    case WStype_CONNECTED:
+      {
+        Serial.printf("[WSc] Connected to url: %s\n", payload);
+      }
+      break;
+    case WStype_TEXT:
+      Serial.printf("[WSc] get text: %s\n", payload);
+      if (strcmp((char*)payload, "unlock") == 0) {
+        
+        digitalWrite(lock, HIGH); 
+        unlockTime = millis();
+        
+        
+      
+        
+      } else if (strcmp((char*)payload, "lock") == 0) {
+          if(digitalRead(magnet_switch) == LOW)
+            digitalWrite(lock, LOW); 
+          else 
+          {
+            webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"Hay dong cua truoc khi khoa\"}");
+            webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"unlock\"}");
+          }
+      }
+      break;
+    case WStype_BIN:
+      Serial.printf("[WSc] get binary length: %u\n", length);
+      break;
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+  // Initialize the output variables as outputs
+  pinMode(magnet_switch, INPUT_PULLUP);
+  pinMode(magnetLED, OUTPUT);
+  pinMode(lock, OUTPUT);
+  // Set LED to LOW
+  digitalWrite(magnetLED, LOW);
+  digitalWrite(lock,LOW);
+  // Connect to Wi-Fi network with SSID and password
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  // Print local IP address and start web server
+  Serial.println("");
+  Serial.println("WiFi connected.");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());
+  webSocket.begin(ip_host, port);
+  webSocket.onEvent(webSocketEvent);
+
+} 
+void loop(){
+//  WiFiClient client = server.available();   // Listen for incoming clients
+  currentTime = millis();
+  webSocket.loop();
+  if (digitalRead(magnet_switch) == LOW) {
+   //Serial.println("Switch Closed");
+    digitalWrite(magnetLED, HIGH);
+    
+    if (check == 0){
+      check = 1;
+      Serial.println("Switch Closed");
+      webSocket.sendTXT("{\"dv\":\"S\",\"st\":\"CUA DANG DONG\"}");
+    }
+  }
+   
+  else {
+    //Serial.println("Switch Open");
+    digitalWrite(magnetLED, LOW);
+    if(digitalRead(lock) == LOW)
+    {
+      webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"CO TROM\"}");
+    }
+    if (check == 1){
+      openTime = millis();
+      Serial.println("Switch Open");
+      check = 0;
+      webSocket.sendTXT("{\"dv\":\"S\",\"st\":\"CUA DANG MO\"}");
+      };
+      
+  }
+    
+    //Serial.println(currentTime);
+    //Serial.println(openTime);
+   
+   if(unlockTime!=0 &&( (currentTime - unlockTime) > timeoutTime))
+    {
+      if(digitalRead(lock)==HIGH)
+      {
+        if(digitalRead(magnet_switch) == LOW) 
+        {
+            digitalWrite(lock,LOW);
+            webSocket.sendTXT(("{\"dv\":\"L\",\"st\":\"TU DONG KHOA CUA\"}"));
+            webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"lock\"}");
+            Serial.println("Unlocktime :");
+            Serial.println(unlockTime);
+            Serial.println("currenttime :");
+            Serial.println(currentTime);
+            
+            unlockTime = 0;
+        }
+      
+        if(digitalRead(magnet_switch) == HIGH)
+        {
+            webSocket.sendTXT("{\"dv\":\"S\",\"st\":\"Cua Da Mo Qua 10s Vui Long Dong Cua\"}"); 
+            Serial.println("unlocktime : ");
+            Serial.println(unlockTime);
+            Serial.println("currenttime : ");
+            Serial.println(currentTime);          
+        }
+         
+        
+      
+      /*if(digitalRead(lock)== HIGH)
+      {
+        digitalWrite(lock,LOW);
+        openTime = 0;
+        webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"close\"}");
+        webSocket.sendTXT(("{\"dv\":\"L\",\"st\":\"TU DONG KHOA CUA\"}"));
+      }*/
+      }
+    }
+
+
+  
+
+}
