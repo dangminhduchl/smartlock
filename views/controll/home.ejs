@@ -15,10 +15,16 @@
     <script>
       window.WebSocket = window.WebSocket;
       var connection = new WebSocket("ws://anlozrer.duckdns.org:33000/");
-      connection.onopen = function () {};
+      connection.onopen = function () {
+        console.log("Socket connection opened!");
+        connection.send(JSON.stringify({action: "requestState"}));
+        document.getElementById("OC-btn").disabled=false;
+
+      };
       connection.onerror = function (error) {};
       connection.onmessage = function (msg) {
         notice = document.getElementById("notice")
+        console.log("MESG: " + msg.data);
         if (msg.data == "CUA DANG DONG") {
           document.getElementById("statedoor").innerText = "CỬA ĐANG ĐÓNG";
           notice.innerText = ""
@@ -37,7 +43,6 @@
             document.getElementById("OC-btn").innerText = "lock";
           }
           document.getElementById("OC-btn").disabled=true;
-            setTimeout(()=>{document.getElementById("OC-btn").disabled=false},5000)
         }
         else if (msg.data == "auto") {
           now = new Date();
@@ -47,6 +52,18 @@
         else if (msg.data == "thief") {
           notice.className="danger"
           notice.innerText = "CỬA ĐÃ MỞ DÙ CHỐT KHÓA ĐANG ĐÓNG!"
+        } else if (msg.data ==  "timeoutUnlock"){
+          document.getElementById("OC-btn").disabled=false
+        } else if (msg.data == "timeoutLock"){
+          document.getElementById("OC-btn").disabled=true
+        } else if (msg.data == "stateUnlock" || msg.data == "stateLock"){
+          if (msg.data == "stateUnlock"){
+            document.getElementById("OC-btn").innerText = "unlock";
+            document.getElementById("notice").innerText = "";
+          }
+          else {
+            document.getElementById("OC-btn").innerText = "lock";
+          }
         }
       };
 
@@ -77,7 +94,7 @@
     </nav>
     <div class="content-wrapper flex fD-column aI-center jC-center">
       <p id="statedoor"></p>
-      <button class="base-btn" id="OC-btn" onclick="buttonOnclick(event)">Unlock</button>
+      <button class="base-btn" id="OC-btn" onclick="buttonOnclick(event)" disabled>Connecting</button>
       <p id="notice"></p>
     </div>
     
