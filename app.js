@@ -36,6 +36,8 @@ var state ={
     "unlock" : 0,
 }    
 
+
+
 app.use('/users',usersrRoute)
 //get the /ws websocket route 
 app.use('/',controlRoute)
@@ -78,6 +80,10 @@ app.ws('/',async function(ws,req) {
                 {
                     
                     console.log("CUADANGMOSANROI")
+                    socket.clients.forEach((client)=>{
+                        client.send("CUA DANG MO SAN ROI")
+                    })
+                    
                 }
             }
 

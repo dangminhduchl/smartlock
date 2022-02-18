@@ -20,12 +20,16 @@
       connection.onmessage = function (msg) {
         if (msg.data == "CUA DANG DONG" || msg.data == "CUA DANG MO") {
           document.getElementById("statedoor").innerText = msg.data;
-        } else {
+        } 
+        else if (msg.data == "open" || msg.data == "close"){
           // document.getElementById("command").innerHTML = msg.data;
           if (msg.data == "close")
-            document.getElementById("OC-btn").innerText = "mở";
-          else document.getElementById("OC-btn").innerText = "đóng";
+            document.getElementById("OC-btn").innerText = "open";
+          else document.getElementById("OC-btn").innerText = "close";
+          
         }
+        else alert(msg.data);
+    
       };
 
       let cmo = {
@@ -55,8 +59,9 @@
     </nav>
     <div class="content-wrapper flex fD-column aI-center jC-center">
       <p id="statedoor"></p>
-      <button class="base-btn" id="OC-btn" onclick="buttonOnclick(event)">mở</button>
+      <button class="base-btn" id="OC-btn" onclick="buttonOnclick(event)">OPEN</button>
+      <p id="notice"></p>
     </div>
-   
+    
   </body>
 </html>
