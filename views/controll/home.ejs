@@ -21,6 +21,7 @@
         notice = document.getElementById("notice")
         if (msg.data == "CUA DANG DONG") {
           document.getElementById("statedoor").innerText = "CỬA ĐANG ĐÓNG";
+          notice.innerText = ""
           notice.classList.remove("danger")
         } 
         else if (msg.data == "CUA DANG MO") {
