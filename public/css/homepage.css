@@ -8,7 +8,10 @@
     padding: 20px 20px;
     text-transform: uppercase;
 }
-
+#OC-btn:disabled {
+    /* background-color: #54505e!important; */
+    filter: brightness(0.75)
+}
 .nav-bar {
     box-sizing: border-box;
     padding: 5px 10px;
@@ -44,5 +47,13 @@
     padding: 10px;
     font-weight: 700;
     text-transform: uppercase
+}
+
+#notice{
+    font-weight: 600;
+}
+
+#notice.danger {
+    color: red
 }
 
