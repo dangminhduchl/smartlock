@@ -36,7 +36,11 @@
           }
           
         }
-        else document.getElementById("notice").innerText = msg.data
+        else if (msg.data == "auto") {
+          now = new Date();
+          document.getElementById("notice").innerText = `CỬA ĐÃ ĐƯỢC TỪ ĐỘNG KHÓA LÚC ${now.getHours()}:${now.getMinutes()} ${now.getDate()}/${now.getMonth()}/${now.getYear()}`
+        }
+        else if (msg.data == "timeout") document.getElementById("notice").innerText = "CỬA ĐÃ MỞ QUÁ 10 GIẤY, VUI LÒNG ĐÓNG CỬA"
     
       };
 
