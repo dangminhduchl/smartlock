@@ -68,7 +68,7 @@ app.ws('/',async function(ws,req) {
         }
         if (msgJson.dv=="L")
         {
-            if(msgJson.st=="open")
+            if(msgJson.st=="unlock")
             {
                 if(state.magnet_switch == 0)
                 {
@@ -88,7 +88,7 @@ app.ws('/',async function(ws,req) {
             }
 
                 
-            if(msgJson.st=="close")
+            if(msgJson.st=="lock")
             {    
                 state.unlock = 0;
             }
