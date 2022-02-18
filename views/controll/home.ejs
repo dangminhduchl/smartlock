@@ -28,13 +28,15 @@
           // document.getElementById("command").innerHTML = msg.data;
           if (msg.data == "lock"){
             document.getElementById("OC-btn").innerText = "unlock";
-            document.getElementById("notice").innerText = ""
+
+            document.getElementById("notice").innerText = "";
           }
           else {
             document.getElementById("OC-btn").innerText = "lock";
             
           }
-          
+          document.getElementById("OC-btn").disabled=true;
+            setTimeout(()=>{document.getElementById("OC-btn").disabled=false},5000)
         }
         else if (msg.data == "auto") {
           now = new Date();
