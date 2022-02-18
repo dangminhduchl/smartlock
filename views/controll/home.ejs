@@ -18,8 +18,10 @@
       connection.onopen = function () {};
       connection.onerror = function (error) {};
       connection.onmessage = function (msg) {
+        notice = document.getElementById("notice")
         if (msg.data == "CUA DANG DONG") {
           document.getElementById("statedoor").innerText = "CỬA ĐANG ĐÓNG";
+          notice.classList.remove("danger")
         } 
         else if (msg.data == "CUA DANG MO") {
           document.getElementById("statedoor").innerText = "CỬA ĐANG MỞ";
@@ -28,12 +30,10 @@
           // document.getElementById("command").innerHTML = msg.data;
           if (msg.data == "lock"){
             document.getElementById("OC-btn").innerText = "unlock";
-
             document.getElementById("notice").innerText = "";
           }
           else {
             document.getElementById("OC-btn").innerText = "lock";
-            
           }
           document.getElementById("OC-btn").disabled=true;
             setTimeout(()=>{document.getElementById("OC-btn").disabled=false},5000)
@@ -44,7 +44,6 @@
         }
         else if (msg.data == "timeout") document.getElementById("notice").innerText = "CỬA ĐÃ MỞ QUÁ 10 GIẤY, VUI LÒNG ĐÓNG CỬA"
         else if (msg.data == "thief") {
-          notice = document.getElementById("notice")
           notice.setClass("danger")
           notice.innerText = "CỬA ĐÃ MỞ DÙ CHỐT KHÓA ĐANG ĐÓNG!"
         }
