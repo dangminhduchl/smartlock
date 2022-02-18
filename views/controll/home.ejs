@@ -20,16 +20,20 @@
       connection.onmessage = function (msg) {
         if (msg.data == "CUA DANG DONG") {
           document.getElementById("statedoor").innerText = "CỬA ĐANG ĐÓNG";
-          document.getElementById("notice").innerText = ""
         } 
         else if (msg.data == "CUA DANG MO") {
           document.getElementById("statedoor").innerText = "CỬA ĐANG MỞ";
         }
         else if (msg.data == "unlock" || msg.data == "lock"){
           // document.getElementById("command").innerHTML = msg.data;
-          if (msg.data == "lock")
+          if (msg.data == "lock"){
             document.getElementById("OC-btn").innerText = "unlock";
-          else document.getElementById("OC-btn").innerText = "lock";
+            document.getElementById("notice").innerText = ""
+          }
+          else {
+            document.getElementById("OC-btn").innerText = "lock";
+            
+          }
           
         }
         else document.getElementById("notice").innerText = msg.data
