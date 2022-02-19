@@ -54,13 +54,18 @@ void webSocketEvent(WStype_t type, uint8_t * payload, size_t length) {
       
         
       } else if (strcmp((char*)payload, "lock") == 0) {
-          if(digitalRead(magnet_switch) == LOW)
-            digitalWrite(lock, LOW); 
-          else 
-          {
-            webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"Hay dong cua truoc khi khoa\"}");
-            webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"unlock\"}");
-          }
+        
+            if(digitalRead(magnet_switch) == LOW)
+              
+              digitalWrite(lock, LOW); 
+           
+            else 
+            {
+              webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"Hay dong cua truoc khi khoa\"}");
+              webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"unlock\"}");
+            }
+          
+        
       }
       break;
     case WStype_BIN:
@@ -115,7 +120,7 @@ void loop(){
     digitalWrite(magnetLED, LOW);
     if(digitalRead(lock) == LOW)
     {
-      webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"CO TROM\"}");
+      webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"thief\"}");
     }
     if (check == 1){
       openTime = millis();
@@ -136,8 +141,8 @@ void loop(){
         if(digitalRead(magnet_switch) == LOW) 
         {
             digitalWrite(lock,LOW);
-            webSocket.sendTXT(("{\"dv\":\"L\",\"st\":\"TU DONG KHOA CUA\"}"));
             webSocket.sendTXT("{\"dv\":\"L\",\"st\":\"lock\"}");
+            webSocket.sendTXT(("{\"dv\":\"L\",\"st\":\"auto\"}"));
             Serial.println("Unlocktime :");
             Serial.println(unlockTime);
             Serial.println("currenttime :");
@@ -148,7 +153,7 @@ void loop(){
       
         if(digitalRead(magnet_switch) == HIGH)
         {
-            webSocket.sendTXT("{\"dv\":\"S\",\"st\":\"Cua Da Mo Qua 10s Vui Long Dong Cua\"}"); 
+            webSocket.sendTXT("{\"dv\":\"S\",\"st\":\"timeout\"}"); 
             Serial.println("unlocktime : ");
             Serial.println(unlockTime);
             Serial.println("currenttime : ");
